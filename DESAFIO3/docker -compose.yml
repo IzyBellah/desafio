@@ -1,0 +1,22 @@
+version "3.3"
+services:
+    app:
+        build: ./DESAFIO3
+        links:
+            - 'db'
+        ports:
+            - '5000:5000'
+        dependes_on:
+            - db
+        db:
+        image: mysql:latest
+        restart: always
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: bancoC
+            MYSQL_USER: bianca
+            MYSQL_PASSWORD: 123
+        volumes:
+        - ./db/docker-entrypoint-initdb.d/
